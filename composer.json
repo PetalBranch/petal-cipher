@@ -1,0 +1,26 @@
+{
+  "name": "petalbranch/petal-cipher",
+  "description": "Petal Cipher is a lightweight reversible encryption library based on custom transformation rules.",
+  "type": "library",
+  "license": "Apache-2.0",
+  "autoload": {
+    "psr-4": {
+      "Petalbranch\\PetalCipher\\": "src/"
+    },
+    "files": [
+      "src/Helper.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "PetalBranch",
+      "email": "branch@petalmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^12"
+  }
+}
