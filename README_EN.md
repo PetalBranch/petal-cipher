@@ -47,6 +47,10 @@
     $pc->updateSeed('your_new_seed'); // Update seed
     $encrypted = $pc->encrypt('your_data'); // Encrypt data using the new seed
     $decrypted = $pc->decrypt($encrypted); // Decrypt data using the new seed
+    
+    $pc->customDict("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"); // Customize the dictionary
+    $encrypted = $pc->encrypt('your_data'); // Encrypt data using the new seed
+    $decrypted = $pc->decrypt($encrypted); // Decrypt data using the new seed
     ```
 
 -  Using helper functions
@@ -63,6 +67,11 @@
     
     // Set seed
     $seed = petal_seed('your_seed'); // Set seed
+    $encrypted = petal_encrypt('your_data',$seed); // Encrypt your data
+    $decrypted = petal_decrypt($encrypted,$seed); // Decrypt your data
+   
+    // Customize the dictionary
+    $seed = petal_custom_dict("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
     $encrypted = petal_encrypt('your_data',$seed); // Encrypt your data
     $decrypted = petal_decrypt($encrypted,$seed); // Decrypt your data
     ```

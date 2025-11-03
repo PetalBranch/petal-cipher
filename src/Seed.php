@@ -22,6 +22,9 @@ class Seed
     /** @var array $toStandard 自定义字符到标准字符的映射关系 */
     private $toStandard = array();
 
+    /** @var bool $isCustomDictionary 是否为自定义字典 */
+    private $isCustomDictionary = false;
+
     /**
      * 构造函数，初始化 Seed 实例并生成字符映射字典
      *
@@ -74,6 +77,44 @@ class Seed
         // 建立双向映射表：标准字符到私有字符，以及私有字符到标准字符
         $this->toPrivate = array_combine($standardChars, $dictionaryChars);
         $this->toStandard = array_flip($this->toPrivate);
+    }
+
+    /**
+     * 设置自定义字典
+     *
+     * 该函数用于设置自定义的字符映射字典，确保字典包含所有必需的字符，
+     * 并建立标准字符集与自定义字典之间的双向映射关系。
+     *
+     * @param string $dictionary 自定义字典字符串，必须包含所有标准字符集中的字符
+     *
+     * @return self 返回当前对象实例，支持链式调用
+     * @throws InvalidArgumentException 当字典不包含所有必需字符时抛出异常
+     */
+    public function setDictionary($dictionary)
+    {
+        if (!Utils::hasSameChars($dictionary, Constant::STANDARD)) {
+            throw new InvalidArgumentException('Dictionary characters must match the standard character set.');
+        }
+
+        foreach (str_split(Constant::STANDARD) as $char) {
+            if (strpos($dictionary, $char) === false) {
+                throw new InvalidArgumentException("Dictionary must contain all required characters: a-z, A-Z, 0-9, +, /");
+            }
+        }
+
+        $this->seedInput = null;
+        $this->isCustomDictionary = true;
+        $this->dictionary = $dictionary;
+
+        // 创建标准字符集和字典字符集之间的映射关系
+        $standardChars = str_split(Constant::STANDARD);
+        $dictionaryChars = str_split($this->dictionary);
+
+        // 建立双向映射表：标准字符到私有字符，以及私有字符到标准字符
+        $this->toPrivate = array_combine($standardChars, $dictionaryChars);
+        $this->toStandard = array_flip($this->toPrivate);
+
+        return $this;
     }
 
 
@@ -130,6 +171,7 @@ class Seed
     {
         // 根据新的种子输入重新生成字典
         $this->generateDictionary($seedInput);
+        $this->isCustomDictionary = false;
         return $this;
     }
 
@@ -141,6 +183,16 @@ class Seed
     public function __toString()
     {
         return $this->dictionary;
+    }
+
+    /**
+     * 获取是否为自定义字典的标识
+     *
+     * @return bool 返回是否为自定义字典的布尔值
+     */
+    public function getIsCustomDictionary()
+    {
+        return $this->isCustomDictionary;
     }
 
 

@@ -56,4 +56,22 @@ if (!function_exists('petal_seed')) {
             return Decrypt::handle($string, $seed);
         }
     }
+
+    if (!function_exists('petal_custom_dict')) {
+
+        /**
+         * 自定义字典<br>
+         * Custom dictionary
+         *
+         * @param string $dict 自定义字典字符串，必须包含所有标准字符集中的字符。<br>
+         * Custom dictionary string. Must include all characters from the standard character set.
+         * @return Seed 种子对象<br>
+         * Seed object
+         */
+        function petal_custom_dict($dict)
+        {
+            $seed = new Seed();
+            return $seed->setDictionary($dict);
+        }
+    }
 }

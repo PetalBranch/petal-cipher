@@ -39,4 +39,24 @@ class Utils
     }
 
 
+    /**
+     * 比较两个字符串是否包含相同的字符及其出现次数
+     *
+     * @param string $compareChars 待比较的第一个字符串
+     * @param string $targetChars 待比较的第二个字符串
+     * @return bool 如果两个字符串包含完全相同的字符且各字符出现次数相同则返回true，否则返回false
+     */
+    public static function hasSameChars($compareChars, $targetChars)
+    {
+        // 验证输入参数是否为字符串类型
+        if (!is_string($compareChars) || !is_string($targetChars)) return false;
+
+        // 比较两个字符串的长度是否相等
+        if (strlen($compareChars) !== strlen($targetChars)) return false;
+
+        // 使用count_chars函数统计两个字符串中各字符的出现次数并进行比较
+        return count_chars($compareChars, 1) === count_chars($targetChars, 1);
+
+    }
+
 }

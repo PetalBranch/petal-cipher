@@ -45,6 +45,10 @@
     $pc->updateSeed('your_new_seed'); // 更新种子
     $encrypted = $pc->encrypt('your_data'); // 使用新的种子加密数据
     $decrypted = $pc->decrypt($encrypted); // 使用新的种子解密数据
+   
+    $pc->customDict("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"); // 自定义字典
+    $encrypted = $pc->encrypt('your_data'); // 使用新的种子加密数据
+    $decrypted = $pc->decrypt($encrypted); // 使用新的种子解密数据
     ```
 
 -  使用助手函数
@@ -61,6 +65,11 @@
     
     // 自定义种子
     $seed = petal_seed('your_seed'); // 设置种子
+    $encrypted = petal_encrypt('your_data',$seed); // 加密您的数据
+    $decrypted = petal_decrypt($encrypted,$seed); // 解密您的数据
+    
+    // 自定义字典
+    $seed = petal_custom_dict("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
     $encrypted = petal_encrypt('your_data',$seed); // 加密您的数据
     $decrypted = petal_decrypt($encrypted,$seed); // 解密您的数据
     ```

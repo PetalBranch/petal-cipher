@@ -87,11 +87,31 @@ class PetalCipher
      *
      * @param string $seedInput 新的加密种子输入值，留空时使用默认种子（系统信息和 PHP 版本作为种子），不建议留空。<br>
      * New encryption seed input value, If left empty, the default seed (system information and PHP version) will be used. Leaving it empty is not recommended.
-     * @return void
+     * @return PetalCipher 当前 PetalCipher 实例对象，用于链式调用<br>
+     * Current PetalCipher instance object, for chain calls
      */
     public function updateSeed($seedInput)
     {
         $this->seed->updateSeed($seedInput);
+        return $this;
+    }
+
+
+
+    /**
+     * 自定义字典<br>
+     * Custom dictionary
+     *
+     * @param string $dict 自定义字典字符串，必须包含所有标准字符集中的字符。<br>
+     * Custom dictionary string. Must include all characters from the standard character set.
+     *
+     * @return self 返回当前对象实例，支持链式调用
+     * @throws InvalidArgumentException 当字典不包含所有必需字符时抛出异常
+     */
+    public function customDict($dict)
+    {
+        $this->seed->setDictionary($dict);
+        return $this;
     }
 
 }
