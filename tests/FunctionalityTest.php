@@ -119,6 +119,7 @@ class FunctionalityTest extends TestCase
 
     public function testZoer()
     {
+        // 这里随便写的，不做测试用途
         $pc = new PetalCipher();
         $encrypt = $pc->encrypt('hello world');
         echo "E1: ".$encrypt."\n";
@@ -128,6 +129,16 @@ class FunctionalityTest extends TestCase
         echo "E2: ".$encrypt."\n";
         $decrypt = $pc->decrypt($encrypt);
         echo "D2: ".$decrypt."\n";
+
+
+
+        petal_custom_dict('0123456+789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+
+
+
+
+
+        // 结束
         $this->assertTrue(true);
     }
 }

@@ -67,6 +67,7 @@ if (!function_exists('petal_seed')) {
          * Custom dictionary string. Must include all characters from the standard character set.
          * @return Seed 种子对象<br>
          * Seed object
+         * @throws InvalidArgumentException 当字典不包含所有必需字符时抛出异常
          */
         function petal_custom_dict($dict)
         {

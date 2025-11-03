@@ -93,13 +93,7 @@ class Seed
     public function setDictionary($dictionary)
     {
         if (!Utils::hasSameChars($dictionary, Constant::STANDARD)) {
-            throw new InvalidArgumentException('Dictionary characters must match the standard character set.');
-        }
-
-        foreach (str_split(Constant::STANDARD) as $char) {
-            if (strpos($dictionary, $char) === false) {
-                throw new InvalidArgumentException("Dictionary must contain all required characters: a-z, A-Z, 0-9, +, /");
-            }
+            throw new InvalidArgumentException('Dictionary must contain all required characters: a-z, A-Z, 0-9, +, /');
         }
 
         $this->seedInput = null;
