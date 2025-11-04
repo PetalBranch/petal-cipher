@@ -15,10 +15,10 @@ class Encrypt
      * 最后根据加密后数据长度选择不同的混合策略，将偏移信息嵌入到加密内容中形成最终结果。
      *
      * @param string $string 待处理的原始字符串
-     * @param Seed|null $seed 可选的种子对象，用于控制编码过程中的映射和偏移逻辑
+     * @param ?Seed|null $seed 可选的种子对象，用于控制编码过程中的映射和偏移逻辑
      * @return string           加密后的字符串结果
      */
-    public static function handle($string, $seed = null)
+    public static function handle(string $string, ?Seed $seed = null): string
     {
 
         // 如果传入的 seed 不是 Seed 实例，则创建一个默认实例

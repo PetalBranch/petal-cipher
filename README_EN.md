@@ -9,7 +9,7 @@
 
 ## Installation
 
-> PHP Version Requirement: >= 5.0 <br>
+> PHP Version Requirement: >= 7.1 <br>
 > ⚠ Development Environment: PHP 8.3. Please test on your own if using a lower version.
 
 - **Install using Composer** (Recommended)
@@ -23,10 +23,11 @@
   Unzip all contents to your project directory, for example: `vendor/PetalBranch/toml` <br>
   In your PHP file, include the autoloader file or manually require the necessary files:
   ```php
-  // Load helper functions
-  require_once 'vendor/PetalBranch/petal-cipher/src/Helpers.php';
-  // Load class files
-  require_once 'vendor/PetalBranch/petal-cipher/src/PetalCipher.php';
+  use Petalbranch\PetalCipher\Utils;
+  
+  // Load files
+  require_once './vendor/petalbranch/petal-cipher/src/Utils.php';
+  Utils::requireOnceFiles();
   ``` 
 
 

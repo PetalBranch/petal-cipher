@@ -10,6 +10,8 @@ use InvalidArgumentException;
  */
 class PetalCipher
 {
+
+    /** @var Seed 种子 */
     private $seed;
 
     /**
@@ -19,12 +21,12 @@ class PetalCipher
      * 初始化PetalCipher实例，设置加密种子<br>
      * Initialize a PetalCipher instance and set the encryption seed
      *
-     * @param string $seedInput 加密种子输入值，留空时使用默认种子（系统信息和 PHP 版本作为种子），不建议留空。<br>
+     * @param string|null $seedInput 加密种子输入值，留空时使用默认种子（系统信息和 PHP 版本作为种子），不建议留空。<br>
      * Encryption seed input value. If left empty, the default seed (system information and PHP version) will be used. Leaving it empty is not recommended.
      * @throws InvalidArgumentException 如果输入参数不是字符串类型，则抛出异常<br>
      * If the input parameter is not of type string, an exception will be thrown.
      */
-    public function __construct($seedInput = null)
+    public function __construct(?string $seedInput = null)
     {
         $this->seed = new Seed($seedInput);
     }
@@ -41,7 +43,7 @@ class PetalCipher
      * @return string 加密后的数据<br>
      * Encrypted data
      */
-    public function encrypt($string)
+    public function encrypt(string $string): string
     {
         return Encrypt::handle($string, $this->seed);
     }
@@ -58,7 +60,7 @@ class PetalCipher
      * @return string 解密后的原始数据<br>
      * Decrypted original data
      */
-    public function decrypt($string)
+    public function decrypt(string $string): string
     {
         return Decrypt::handle($string, $this->seed);
     }
@@ -70,10 +72,10 @@ class PetalCipher
      * 返回当前使用的加密种子<br>
      * Returns the currently used encryption seed
      *
-     * @return string 当前加密种子值<br>
+     * @return ?string 当前加密种子值<br>
      * Current encryption seed value
      */
-    public function getSeed()
+    public function getSeed(): ?string
     {
         return $this->seed->getSeed();
     }
@@ -85,12 +87,12 @@ class PetalCipher
      * 更新当前使用的加密种子<br>
      * Update the currently used encryption seed
      *
-     * @param string $seedInput 新的加密种子输入值，留空时使用默认种子（系统信息和 PHP 版本作为种子），不建议留空。<br>
+     * @param ?string $seedInput 新的加密种子输入值，留空时使用默认种子（系统信息和 PHP 版本作为种子），不建议留空。<br>
      * New encryption seed input value, If left empty, the default seed (system information and PHP version) will be used. Leaving it empty is not recommended.
      * @return PetalCipher 当前 PetalCipher 实例对象，用于链式调用<br>
      * Current PetalCipher instance object, for chain calls
      */
-    public function updateSeed($seedInput)
+    public function updateSeed(?string $seedInput): PetalCipher
     {
         $this->seed->updateSeed($seedInput);
         return $this;
@@ -108,7 +110,7 @@ class PetalCipher
      * @return self 返回当前对象实例，支持链式调用
      * @throws InvalidArgumentException 当字典不包含所有必需字符时抛出异常
      */
-    public function customDict($dict)
+    public function customDict(string $dict): PetalCipher
     {
         $this->seed->setDictionary($dict);
         return $this;

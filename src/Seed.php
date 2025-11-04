@@ -17,10 +17,10 @@ class Seed
     private $dictionary;
 
     /** @var array $toPrivate 标准字符到自定义字符的映射关系 */
-    private $toPrivate = array();
+    private $toPrivate = [];
 
     /** @var array $toStandard 自定义字符到标准字符的映射关系 */
-    private $toStandard = array();
+    private $toStandard = [];
 
     /** @var bool $isCustomDictionary 是否为自定义字典 */
     private $isCustomDictionary = false;
@@ -28,10 +28,10 @@ class Seed
     /**
      * 构造函数，初始化 Seed 实例并生成字符映射字典
      *
-     * @param string|null $seedInput 用于生成字典的种子输入，如果为 null 则使用系统信息和 PHP 版本作为种子
+     * @param ?string $seedInput 用于生成字典的种子输入，如果为 null 则使用系统信息和 PHP 版本作为种子
      * @throws InvalidArgumentException 如果输入参数不是字符串类型，则抛出异常
      */
-    public function __construct($seedInput = null)
+    public function __construct(?string $seedInput = null)
     {
         $this->generateDictionary($seedInput);
     }
@@ -43,11 +43,11 @@ class Seed
      * 该函数根据提供的种子输入生成一个字符映射字典，用于字符转换。
      * 它会创建两个映射表：标准字符到私有字符的映射和私有字符到标准字符的映射。
      *
-     * @param string|null $seedInput 用于生成字典的种子输入，如果为null则使用系统信息和PHP版本作为种子
+     * @param ?string $seedInput 用于生成字典的种子输入，如果为null则使用系统信息和PHP版本作为种子
      * @return void
      * @throws InvalidArgumentException 如果输入参数不是字符串类型，则抛出异常
      */
-    private function generateDictionary($seedInput)
+    private function generateDictionary(?string $seedInput)
     {
 
         $this->seedInput = $seedInput;
@@ -90,7 +90,7 @@ class Seed
      * @return self 返回当前对象实例，支持链式调用
      * @throws InvalidArgumentException 当字典不包含所有必需字符时抛出异常
      */
-    public function setDictionary($dictionary)
+    public function setDictionary(string $dictionary): Seed
     {
         if (!Utils::hasSameChars($dictionary, Constant::STANDARD)) {
             throw new InvalidArgumentException('Dictionary must contain all required characters: a-z, A-Z, 0-9, +, /');
@@ -117,7 +117,7 @@ class Seed
      *
      * @return ?string 返回种子输入值
      */
-    public function getSeed()
+    public function getSeed(): ?string
     {
         return $this->seedInput;
     }
@@ -127,7 +127,7 @@ class Seed
      *
      * @return string 返回字典数据
      */
-    public function getDictionary()
+    public function getDictionary(): string
     {
         return $this->dictionary;
     }
@@ -138,7 +138,7 @@ class Seed
      *
      * @return array 返回标准字符到自定义字符的映射关系
      */
-    public function getToPrivate()
+    public function getToPrivate(): array
     {
         return $this->toPrivate;
     }
@@ -149,7 +149,7 @@ class Seed
      *
      * @return array 获取自定义字符到标准字符的映射关系
      */
-    public function getToStandard()
+    public function getToStandard(): array
     {
         return $this->toStandard;
     }
@@ -158,10 +158,10 @@ class Seed
     /**
      * 更新种子并重新生成字典
      *
-     * @param mixed $seedInput 种子输入数据，用于重新生成字典
+     * @param ?string $seedInput 种子输入数据，用于重新生成字典
      * @return self 返回当前对象实例，支持链式调用
      */
-    public function updateSeed($seedInput = null)
+    public function updateSeed(?string $seedInput = null): Seed
     {
         // 根据新的种子输入重新生成字典
         $this->generateDictionary($seedInput);
@@ -174,7 +174,7 @@ class Seed
      *
      * @return string 返回字典属性的字符串值
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->dictionary;
     }
@@ -184,7 +184,7 @@ class Seed
      *
      * @return bool 返回是否为自定义字典的布尔值
      */
-    public function getIsCustomDictionary()
+    public function isCustomDictionary(): bool
     {
         return $this->isCustomDictionary;
     }

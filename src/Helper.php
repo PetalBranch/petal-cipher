@@ -14,7 +14,7 @@ if (!function_exists('petal_seed')) {
      *  Encryption seed input value. If left empty, the default seed (system information and PHP version) will be used. Leaving it empty is not recommended.
      * @return Seed 种子对象<br>Seed object
      */
-    function petal_seed($seedInput = null)
+    function petal_seed(?string $seedInput = null): Seed
     {
         return new Seed($seedInput);
     }
@@ -32,7 +32,7 @@ if (!function_exists('petal_seed')) {
          * @return string 返回解密数据<br>
          * Returns the encrypted data
          */
-        function petal_encrypt($string, $seed = null)
+        function petal_encrypt(string $string, ?Seed $seed = null): string
         {
             return Encrypt::handle($string, $seed);
         }
@@ -51,7 +51,7 @@ if (!function_exists('petal_seed')) {
          * @return string|false 解密数据; 解密失败返回 false<br>
          * Returns the decrypted data; returns false on failure
          */
-        function petal_decrypt($string, $seed = null)
+        function petal_decrypt(string $string, ?Seed $seed = null)
         {
             return Decrypt::handle($string, $seed);
         }
@@ -69,7 +69,7 @@ if (!function_exists('petal_seed')) {
          * Seed object
          * @throws InvalidArgumentException 当字典不包含所有必需字符时抛出异常
          */
-        function petal_custom_dict($dict)
+        function petal_custom_dict(string $dict): Seed
         {
             $seed = new Seed();
             return $seed->setDictionary($dict);

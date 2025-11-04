@@ -8,7 +8,7 @@
 
 ## 安装
 
-> PHP 版本要求：>= 5.0 <br>
+> PHP 版本要求：>= 7.1 <br>
 > ⚠ 开发环境：PHP 8.3 , 低于此版本请先自行测试。
 
 - **使用 Composer 安装**（推荐）
@@ -22,10 +22,13 @@
   将所有内容解压到项目目录，例如 `vendor/PetalBranch/petal-cipher` <br>
   在 PHP 文件中引入自动加载文件或手动 require：
   ```php
-  // 加载助手函数
-  require_once 'vendor/PetalBranch/petal-cipher/src/Helpers.php';
-  // 加载类文件
-  require_once 'vendor/PetalBranch/petal-cipher/src/PetalCipher.php';
+  use Petalbranch\PetalCipher\Utils;
+  
+  // 引入文件
+  require_once './vendor/petalbranch/petal-cipher/src/Utils.php';
+  
+  // 手动引入
+  Utils::requireOnceFiles();
   ``` 
 
 ## 如何使用

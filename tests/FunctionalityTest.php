@@ -1,6 +1,6 @@
-<?php /** @noinspection PhpParamsInspection */
+<?php
+/** @noinspection PhpParamsInspection */
 
-use Petalbranch\PetalCipher\Seed;
 use Petalbranch\PetalCipher\PetalCipher;
 use PHPUnit\Framework\TestCase;
 
@@ -13,45 +13,37 @@ class FunctionalityTest extends TestCase
 
         // 默认种子1
         $encrypt = petal_encrypt('hello world');
-        $this->assertTrue(is_string($encrypt));
         $this->assertNotEquals('hello world', $encrypt);
         $this->assertEquals('hello world', petal_decrypt($encrypt));
 
         for ($i = 0; $i < 1000; $i++) {
             $encrypt = petal_encrypt((string)$i);
-            $this->assertTrue(is_string($encrypt));
             $this->assertNotEquals((string)$i, $encrypt);
             $this->assertEquals((string)$i, petal_decrypt($encrypt));
         }
 
         // 默认种子2
         $seed = petal_seed();
-        $this->assertTrue($seed instanceof Seed);
 
         $encrypt = petal_encrypt('hello world', $seed);
-        $this->assertTrue(is_string($encrypt));
         $this->assertNotEquals('hello world', $encrypt);
         $this->assertEquals('hello world', petal_decrypt($encrypt, $seed));
 
         for ($i = 0; $i < 1000; $i++) {
             $encrypt = petal_encrypt((string)$i, $seed);
-            $this->assertTrue(is_string($encrypt));
             $this->assertNotEquals((string)$i, $encrypt);
             $this->assertEquals((string)$i, petal_decrypt($encrypt, $seed));
         }
 
         // 自定义种子
         $seed = petal_seed("2025年11月02日");
-        $this->assertTrue($seed instanceof Seed);
 
         $encrypt = petal_encrypt('hello world', $seed);
-        $this->assertTrue(is_string($encrypt));
         $this->assertNotEquals('hello world', $encrypt);
         $this->assertEquals('hello world', petal_decrypt($encrypt, $seed));
 
         for ($i = 0; $i < 1000; $i++) {
             $encrypt = petal_encrypt((string)$i, $seed);
-            $this->assertTrue(is_string($encrypt));
             $this->assertNotEquals((string)$i, $encrypt);
             $this->assertEquals((string)$i, petal_decrypt($encrypt, $seed));
         }
@@ -68,14 +60,12 @@ class FunctionalityTest extends TestCase
         $this->assertEquals($expected, $pc->getSeed());
 
         $encrypt = $pc->encrypt('hello world');
-        $this->assertTrue(is_string($encrypt));
         $this->assertNotEquals('hello world', $encrypt);
         $this->assertEquals('hello world', $pc->decrypt($encrypt));
 
 
         for ($i = 0; $i < 1000; $i++) {
             $encrypt = $pc->encrypt((string)$i);
-            $this->assertTrue(is_string($encrypt));
             $this->assertNotEquals((string)$i, $encrypt);
             $this->assertEquals((string)$i, $pc->decrypt($encrypt));
         }
@@ -87,13 +77,11 @@ class FunctionalityTest extends TestCase
         $this->assertEquals($expected, $pc->getSeed());
 
         $encrypt = $pc->encrypt('hello world');
-        $this->assertTrue(is_string($encrypt));
         $this->assertNotEquals('hello world', $encrypt);
         $this->assertEquals('hello world', $pc->decrypt($encrypt));
 
         for ($i = 0; $i < 1000; $i++) {
             $encrypt = $pc->encrypt((string)$i);
-            $this->assertTrue(is_string($encrypt));
             $this->assertNotEquals((string)$i, $encrypt);
             $this->assertEquals((string)$i, $pc->decrypt($encrypt));
         }
@@ -105,13 +93,11 @@ class FunctionalityTest extends TestCase
         $this->assertEquals($expected, $pc->getSeed());
 
         $encrypt = $pc->encrypt('hello world');
-        $this->assertTrue(is_string($encrypt));
         $this->assertNotEquals('hello world', $encrypt);
         $this->assertEquals('hello world', $pc->decrypt($encrypt));
 
         for ($i = 0; $i < 1000; $i++) {
             $encrypt = $pc->encrypt((string)$i);
-            $this->assertTrue(is_string($encrypt));
             $this->assertNotEquals((string)$i, $encrypt);
             $this->assertEquals((string)$i, $pc->decrypt($encrypt));
         }
@@ -120,15 +106,15 @@ class FunctionalityTest extends TestCase
     public function testZoer()
     {
         // 这里随便写的，不做测试用途
-//        $pc = new PetalCipher();
-//        $encrypt = $pc->encrypt('hello world');
-//        echo "E1: ".$encrypt."\n";
-//        $decrypt = $pc->decrypt($encrypt);
-//        echo "D1: ".$decrypt."\n";
-//        $encrypt = $pc->encrypt('hello world');
-//        echo "E2: ".$encrypt."\n";
-//        $decrypt = $pc->decrypt($encrypt);
-//        echo "D2: ".$decrypt."\n";
+        $pc = new PetalCipher();
+        $encrypt = $pc->encrypt('hello world');
+        echo "E1: ".$encrypt."\n";
+        $decrypt = $pc->decrypt($encrypt);
+        echo "D1: ".$decrypt."\n";
+        $encrypt = $pc->encrypt('hello world');
+        echo "E2: ".$encrypt."\n";
+        $decrypt = $pc->decrypt($encrypt);
+        echo "D2: ".$decrypt."\n";
 
 
         $seed = petal_seed("123456");
@@ -156,9 +142,6 @@ class FunctionalityTest extends TestCase
         echo petal_decrypt("suIvctu5XvoJJkYHqZ/ra+==", $seed) . "\n";
         echo petal_decrypt("HtK7JOtWD7YlqLB2/FuA+h==", $seed) . "\n";
         echo petal_decrypt("AlxaJNltCa3DZf5cF6zVKP==", $seed) . "\n";
-
-
-
 
 
         // 结束

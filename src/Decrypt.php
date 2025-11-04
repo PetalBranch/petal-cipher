@@ -11,10 +11,10 @@ class Decrypt
      * 尝试还原出原始数据。如果输入字符串长度不足8位，则直接返回false。
      *
      * @param string $string 待处理的加密字符串
-     * @param Seed|null $seed 可选的Seed实例，用于控制解密过程中的字符映射和偏移计算
+     * @param ?Seed $seed 可选的Seed实例，用于控制解密过程中的字符映射和偏移计算
      * @return string|false 解密后的原始数据，如果解密失败或输入无效则返回false
      */
-    public static function handle($string, $seed = null)
+    public static function handle(string $string, ?Seed $seed = null)
     {
         // 如果传入的 seed 不是 Seed 实例，则创建一个默认实例
         if (!$seed instanceof Seed) $seed = new Seed();
