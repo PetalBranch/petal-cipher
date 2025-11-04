@@ -45,7 +45,10 @@ class Decrypt
 
         // 对偏移部分进行反向偏移处理，并转换为标准Base64字符集后补全填充
         $b64Offset = Utils::applyOffsetToString($b64OffsetPrivate, $seed, (strlen($b64PrivateEncrypt) % 64) * -1);
-        if (strpos(Constant::INVAILD_CHAR_3_LIST, $b64Offset[3]) !== -1) $b64Offset[3] = "=";
+
+        // 修复：下标错误、判断错误
+        if (strpos(Constant::INVAILD_CHAR_3_LIST, $b64Offset[2]) !== false) $b64Offset[2] = "=";
+
         $b64Offset = str_pad($b64Offset, 4, "=");
 
         // 解码偏移值，用于后续对加密内容的反向处理

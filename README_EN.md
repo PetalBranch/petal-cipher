@@ -98,7 +98,90 @@
     E2: IKGQijK7R84jOrowjKs=
     D2: hello world
     ```
-
+## Test Example
+- Test code
+    ```php
+    <?php
+    include('./vendor/autoload.php');
+    
+    $seed = petal_seed("123456");
+    
+    $string = "hello, world.";
+    $encrypt = petal_encrypt($string, $seed);
+    $decypt = petal_decrypt($encrypt, $seed);
+    
+    echo "PV: " . phpversion() . "\n";
+    echo "O:  " . $string . "\n";
+    echo "E:  " . $encrypt . "\n";
+    echo "D:  " . $decypt . "\n";
+    ```
+    ```php
+    <?php
+    include('./vendor/autoload.php');
+    
+    // PV
+    echo "PV: " . phpversion() . "\n";
+    //  PV: 7.4.9 Generate
+    echo petal_decrypt("Ye0HcyePXHa/nj+B49x3cU==", $seed) . "\n";
+    echo petal_decrypt("02bKcp2NXKuZ6KtdsrHjey==", $seed) . "\n";
+    echo petal_decrypt("x+Huch+G5ujzX2Sew8a1lN==", $seed) . "\n";
+    echo petal_decrypt("4as/c+a7X/DPCljxXgw9zl==", $seed) . "\n";
+    echo petal_decrypt("DAo4JcAHr4FDN4zjfprL1b==", $seed) . "\n";
+    echo petal_decrypt("ZEXTc3EoCTmSbH9FQBiOLv==", $seed) . "\n";
+    echo petal_decrypt("WiCUJEiMrUP51hmZbYQtkL==", $seed) . "\n";
+    echo petal_decrypt("x+Huch+G5ujCXISew8a1lN==", $seed) . "\n";
+    echo petal_decrypt("PgNWJ8gXCWd/vLkm7aGeO6==", $seed) . "\n";
+    echo petal_decrypt("suIvctu5XvoJJkYHqZ/ra+==", $seed) . "\n";
+    echo petal_decrypt("HtK7JOtWD7YlqLB2/FuA+h==", $seed) . "\n";
+    echo petal_decrypt("AlxaJNltCa3DZf5cF6zVKP==", $seed) . "\n";
+    ```
+- Output / Result
+    ```bash
+    PS D:\develop\test\test_petalcipher> php index.php
+    PV: 8.3.17
+    O:  hello, world.
+    E:  I7z3JG7Sr3VPkS0KLXv4ut==
+    D:  hello, world.
+    ```
+    ```bash
+    PS D:\develop\test\test_petalcipher> D:\develop\devenv\php\php7.4.9nts\php.exe index.php
+    PV: 7.4.9
+    O:  hello, world.
+    E:  4as/c+a7X/DPC8jxXgw9zl==
+    D:  hello, world.
+    ```
+    ```bash
+    PS D:\develop\test\test_petalcipher> D:\develop\devenv\php\php7.4.9nts\php.exe index.php
+    PV: 8.3.17
+    hello, world.
+    hello, world.
+    hello, world.
+    hello, world.
+    hello, world.
+    hello, world.
+    hello, world.
+    hello, world.
+    hello, world.
+    hello, world.
+    hello, world.
+    hello, world.
+    ```
+    ```bash
+    PS D:\develop\test\test_petalcipher> D:\develop\devenv\php\php7.4.9nts\php.exe index.php
+    PV: 7.4.9
+    hello, world.
+    hello, world.
+    hello, world.
+    hello, world.
+    hello, world.
+    hello, world.
+    hello, world.
+    hello, world.
+    hello, world.
+    hello, world.
+    hello, world.
+    hello, world.
+    ```
 ## License
 
 - [Apache License 2.0](LICENSE.txt)
