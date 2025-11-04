@@ -20,7 +20,7 @@
 
   Download the latest version ZIP file from the GitHub repository:<br>
   https://github.com/PetalBranch/petal-cipher <br>
-  Unzip all contents to your project directory, for example: `vendor/PetalBranch/toml` <br>
+  Unzip all contents to your project directory, for example: `vendor/PetalBranch/petal-cipher` <br>
   In your PHP file, include the autoloader file or manually require the necessary files:
   ```php
   use Petalbranch\PetalCipher\Utils;
