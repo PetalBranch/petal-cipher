@@ -122,7 +122,9 @@
     <?php
     // 跨PHP版本兼容性测试
     include('./vendor/autoload.php');
-    
+  
+    $seed = petal_seed("123456");
+  
     // 当前PV
     echo "PV: " . phpversion() . "\n";
     // 以下数据由 PV: 7.4.9 生成
