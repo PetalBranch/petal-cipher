@@ -49,29 +49,13 @@ class Encrypt
         // 根据编码后字符串长度决定混合方式
         if (strlen($b64PrivateEncrypt) >= 10) {
             // 长字符串采用固定位置插入偏移字符的方式混合
-            $result = substr($b64PrivateEncrypt, 0, 4) . $b64OffsetPrivate[0] .
+            return substr($b64PrivateEncrypt, 0, 4) . $b64OffsetPrivate[0] .
                 substr($b64PrivateEncrypt, 4, 3) . $b64OffsetPrivate[1] .
                 substr($b64PrivateEncrypt, 7, 2) . $b64OffsetPrivate[2] .
                 substr($b64PrivateEncrypt, 9, 1) . $b64OffsetPrivate[3] .
                 substr($b64PrivateEncrypt, 10);
-        } else {
-            // 短字符串按字符交替合并处理
-            if (strlen($b64PrivateEncrypt) + strlen($b64OffsetPrivate) === 8) {
-                if ($b64OffsetPrivate[3] = "=") $b64OffsetPrivate[3] = "=";
-            }
-
-            $len = min(strlen($b64PrivateEncrypt), 4);
-            for ($i = 0; $i < $len; $i++) $result .= $b64PrivateEncrypt[$i] . $b64OffsetPrivate[$i];
-
-            if (strlen($b64PrivateEncrypt) > $len) {
-                $result .= substr($b64PrivateEncrypt, $len);
-            } else {
-                $result .= substr($b64OffsetPrivate, $len);
-            }
         }
 
-        return $result;
+        return $b64OffsetPrivate . $b64PrivateEncrypt;
     }
-
-
 }

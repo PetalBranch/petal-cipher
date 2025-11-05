@@ -127,7 +127,7 @@ class FunctionalityTest extends TestCase
         echo "O:  " . $string . "\n";
         echo "E:  " . $encrypt . "\n";
         echo "D:  " . $decypt . "\n";
-        echo "\n---------\n PV7";
+        echo "\n---------\n 以下为PHP7生成的密文 \n";
 
 
         echo petal_decrypt("Ye0HcyePXHa/nj+B49x3cU==", $seed) . "\n";
@@ -141,7 +141,15 @@ class FunctionalityTest extends TestCase
         echo petal_decrypt("PgNWJ8gXCWd/vLkm7aGeO6==", $seed) . "\n";
         echo petal_decrypt("suIvctu5XvoJJkYHqZ/ra+==", $seed) . "\n";
         echo petal_decrypt("HtK7JOtWD7YlqLB2/FuA+h==", $seed) . "\n";
-        echo petal_decrypt("AlxaJNltCa3DZf5cF6zVKP==", $seed) . "\n";
+        echo petal_decrypt("AlxaJNltCa3DZf5cF6zVKP==", $seed) . "\n\n";
+
+        $pc = new PetalCipher();
+        for ($i = 3; $i < 10; $i++){
+            $encrypt = $pc->encrypt($i);
+            echo "E$i: ".$encrypt."\n";
+            $decrypt = $pc->decrypt($encrypt);
+            echo "D$i: ".$decrypt."\n";
+        }
 
 
         // 结束

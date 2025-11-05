@@ -33,14 +33,8 @@ class Decrypt
                 substr($string, 8, 1) .
                 substr($string, 11, 1);
         } else {
-            $b64PrivateEncrypt = substr($string, 0, 1) .
-                substr($string, 2, 1) .
-                substr($string, 4, 1) .
-                substr($string, 6, 1) .
-                substr($string, 8);
-            $b64OffsetPrivate = substr($string, 1, 1) .
-                substr($string, 3, 1) .
-                substr($string, 5, 1);
+            $b64PrivateEncrypt = substr($string, 4);
+            $b64OffsetPrivate = substr($string, 0, 3);
         }
 
         // 对偏移部分进行反向偏移处理，并转换为标准Base64字符集后补全填充
